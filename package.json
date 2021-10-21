@@ -1,0 +1,20 @@
+{
+  "name": "footballproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "rahul dotel",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-session": "^1.4.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.14"
+  }
+}
