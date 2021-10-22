@@ -1,0 +1,21 @@
+{
+    "_id": "xsajbsajcbsajcsbc",
+    "orders": {
+        "6171bfeb31368fffdd17eda4": {
+            "name": "ssxsxsx",
+            "image": "scscsacsc",
+            "size": 4,
+            "price": 13200,
+            "count": 4
+        },
+        "6171bfe031368fffdd17ed96": {
+            "name": "ssxsxsx",
+            "image": "scscsacsc",
+            "size": 4,
+            "price": 13200,
+            "count": 4
+        }
+    },
+    "total": 1200,
+    "orderStatus": "not seen"
+}

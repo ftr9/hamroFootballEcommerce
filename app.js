@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
 
-app.get("/", (req, res) => {
-    res.send(`<h1>hello hamro football .com</h1>`);
-})
+app.use(morgan('short'));
+
+const appRoute = require("./routes/appRoute");
+app.use("/api/v1/hamrofootball", appRoute);
+
 
 module.exports = app;
