@@ -1,1 +1,1 @@
-# hamroFootballEcommerce MERN stack build
+# hamroFootballEcommerce MERN(Mongodb Express React.js Node.js) stack build
