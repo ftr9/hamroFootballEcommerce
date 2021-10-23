@@ -1,0 +1,113 @@
+.About {
+  height: 100vh;
+  padding: 5rem;
+  position: relative;
+}
+
+.About::before {
+  content: 'SERVICE';
+  font-size: 30rem;
+  letter-spacing: 1rem;
+  display: inline-block;
+  position: fixed;
+  font-weight: bolder;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+  color: rgba(105, 105, 105, 0.062);
+}
+
+.About__services {
+  display: flex;
+  width: 80%;
+  margin: 2rem auto;
+
+  animation-name: revealTop-1;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+}
+
+.About__description {
+  color: rgb(48, 48, 48);
+}
+
+.About__services__detail {
+  text-align: center;
+  margin: 1rem;
+}
+
+.About__services__detail h3 {
+  margin: 1rem 0;
+}
+
+.About__services__detail ion-icon {
+  font-size: 6rem;
+}
+
+.About__services__detail ion-icon[name='card']:nth-of-type(1) {
+  color: #2ba700;
+}
+.About__services__detail ion-icon[name='bicycle'] {
+  color: #c00c0c;
+}
+.About__services__detail ion-icon[name='timer'] {
+  color: #019797;
+}
+
+.About__founder {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 8rem;
+  animation-name: revealTop-1;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
+}
+
+.About__founder--left {
+  height: 20rem;
+  width: 20rem;
+  border-radius: 50%;
+  border: 5px solid rgb(8, 8, 94);
+}
+.About__founder--left img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.About__founder--right {
+  width: 50%;
+  text-align: right;
+  color: rgb(31, 31, 31);
+}
+
+.quote {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 12rem;
+  font-weight: bolder;
+  position: absolute;
+  transform: translateY(-10rem);
+  color: rgb(167, 167, 167);
+}
+
+@keyframes revealTop-1 {
+  from {
+    opacity: 0;
+    transform: translateY(-5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

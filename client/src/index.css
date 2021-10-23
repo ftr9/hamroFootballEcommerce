@@ -17,3 +17,8 @@ body {
   color: black;
   background-image: linear-gradient(to left bottom, #ebebeb, #bdbdbd);
 }
+#details {
+  position: fixed;
+  top: 0;
+  left: 0;
+}

@@ -1,0 +1,73 @@
+.Cartcard {
+  width: 60rem;
+  background-color: rgb(204, 204, 204);
+  margin: 0 auto;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.349);
+}
+
+.Cartcard__middle {
+  width: 50%;
+}
+
+.Cartcard__left img {
+  height: 10rem;
+}
+
+.Cartcard__sizes {
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.Cartcard__sizes .sizes__card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  width: 3rem;
+  background-color: white;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
+
+.Cartcard__sizes #active {
+  background-color: black;
+  color: white;
+}
+
+.sizes__card:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.Cartcard__name {
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.Cartcard__quantity {
+  text-align: center;
+}
+
+.Cartcard__quantityBox {
+  background-color: red;
+  border-radius: 10rem;
+  color: white;
+}
+
+.Cartcard__increase,
+.Cartcard__decrease {
+  font-size: 1.8rem;
+}
+
+.Cartcard__increase,
+.Cartcard__decrease:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}

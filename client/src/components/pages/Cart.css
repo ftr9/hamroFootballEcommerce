@@ -1,0 +1,20 @@
+.Cartpage {
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 5rem;
+}
+
+.Cartpage__title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.Cartpage__button {
+  text-align: center;
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}

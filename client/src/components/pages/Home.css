@@ -8,6 +8,7 @@
   content: 'FOOTBALL';
   display: inline-block;
   position: absolute;
+  z-index: -1;
   top: 9rem;
   left: 0rem;
   font-size: 24rem;
@@ -42,6 +43,10 @@
 
 .Home__middle--content {
   width: 50%;
+  animation-name: reveal-1;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
 }
 .Home__middle--content p {
   width: 92%;
@@ -51,6 +56,10 @@
 .Home__middle--image {
   text-align: center;
   width: 50%;
+  animation-name: reveal-2;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
 }
 .Home__middle--image img {
   height: 58.5rem;
@@ -67,4 +76,26 @@
 .Home__bottom {
   display: flex;
   justify-content: flex-end;
+}
+
+@keyframes reveal-1 {
+  from {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-2 {
+  from {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

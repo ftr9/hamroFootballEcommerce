@@ -1,0 +1,42 @@
+.footballCard {
+  width: 28rem;
+  background-color: tomato;
+  position: relative;
+  margin-top: 5rem;
+  padding: 5.5rem 1rem 2rem 1rem;
+  border-radius: 1rem;
+  background-color: #c4c4c48c;
+  box-shadow: 1px 1px 10px rgb(138, 138, 138);
+  margin-bottom: 2rem;
+}
+.footballCard__name {
+  margin: 1rem 0rem;
+}
+.footballCard img {
+  height: 11rem;
+  position: absolute;
+  top: -5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.footballCard__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.footballCard__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-family: inherit;
+  margin: 1rem 0;
+}
+
+.footballCard__details {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-weight: bold;
+  font-family: inherit;
+}

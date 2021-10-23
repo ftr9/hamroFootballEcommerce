@@ -1,0 +1,68 @@
+.myOrders {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.OrderCart {
+  width: 90rem;
+  background-color: #c4c4c4;
+  margin: 2.5rem auto;
+  padding: 2rem 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.OrderCart__id {
+  padding: 0.5rem 1rem;
+  background-color: #0a6c0a;
+  border-radius: 10rem;
+  width: 15rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.OrderCart__underline {
+  height: 0.05rem;
+  background-color: #cbcbcb;
+  width: 45rem;
+  margin: 2.5rem auto;
+  display: block;
+}
+
+.OrderCart__orders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.OrderCart__totaldisplay {
+  text-align: center;
+}
+
+.OrderCart__status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3.5rem;
+}
+
+.OrderCart__status--bubble {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  background-color: #ff0000;
+  margin: 0 auto;
+}
+
+.OrderCart__status--line {
+  width: 12rem;
+  height: 0.5rem;
+  background-color: red;
+  transform: translateY(-1rem);
+}
+
+.OrderCart__status--content p {
+  font-size: 1.2rem;
+  text-align: center;
+}

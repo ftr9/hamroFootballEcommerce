@@ -1,16 +1,11 @@
 import './Solidbutton.css';
-const Solidbutton = (props) => {
+const Solidbutton = ({ content, icon, color }) => {
 
-    const { content, icon } = props;
 
     return (
-        <div className="Solidbutton">
-            <div className="Solidbutton__content">
-                {content}
-            </div>
-            <div className="Solidbutton__icon">
-                {icon}
-            </div>
+        <div className="Solidbutton" style={{ backgroundColor: color }}>
+            {content}
+            {icon}
         </div>
     )
 }

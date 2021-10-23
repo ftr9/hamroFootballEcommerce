@@ -1,0 +1,66 @@
+.leagueList {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  width: 125rem;
+  justify-content: center;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.leagueList__Card:hover {
+  transform: translateY(-1rem);
+  border: 2px solid blue;
+}
+.leagueList__Card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.leagueList__Card {
+  height: 15rem;
+  width: 15rem;
+  background-color: white;
+  display: inline-block;
+  margin: 0 0.1rem;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  animation-name: revealLeagues;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: backwards;
+}
+.leagueList__Card:nth-of-type(1) {
+  animation-delay: 0.01s;
+}
+.leagueList__Card:nth-of-type(2) {
+  animation-delay: 0.04s;
+}
+.leagueList__Card:nth-of-type(3) {
+  animation-delay: 0.07s;
+}
+.leagueList__Card:nth-of-type(4) {
+  animation-delay: 0.1s;
+}
+.leagueList__Card:nth-of-type(5) {
+  animation-delay: 0.2s;
+}
+.leagueList__Card:nth-of-type(6) {
+  animation-delay: 0.3s;
+}
+.leagueList__Card:nth-of-type(7) {
+  animation-delay: 0.4s;
+}
+.leagueList__Card:nth-of-type(8) {
+  animation-delay: 0.5s;
+}
+
+@keyframes revealLeagues {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
