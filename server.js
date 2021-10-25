@@ -1,10 +1,12 @@
 const app = require("./app");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config({ path: './config/keys.env' });
 
 (async () => {
 
     try {
-        await mongoose.connect("mongodb+srv://Rahul:luharletod@cluster0.mysch.mongodb.net/hamrofootball?retryWrites=true&w=majority")
+        await mongoose.connect(process.env.MONGO_URI)
         console.log("database connected successfully");
     } catch (err) {
         console.log(err);
