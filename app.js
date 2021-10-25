@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require('path');
 const passport = require("passport");
 const cookieSession = require("cookie-session");
 const dotenv = require("dotenv");
@@ -23,6 +24,8 @@ app.use(passport.session());
 const appRoute = require("./routes/appRoute");
 app.use("/api/v1/hamrofootball", appRoute);
 
+
+//just for check later is removed on production 
 app.get("/userLog", (req, res) => {
     if (req.user) {
         res.send(req.user);
@@ -33,5 +36,15 @@ app.get("/userLog", (req, res) => {
 
 const authRoute = require("./routes/authRoute");
 app.use("/auth/google/", authRoute);
+
+if (process.env.NODE_ENV === 'production') {
+
+    app.use(express.static(path.join('client/build')));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    })
+
+}
 
 module.exports = app;
