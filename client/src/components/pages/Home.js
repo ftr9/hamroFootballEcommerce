@@ -1,7 +1,33 @@
 import './Home.css';
 import Anchorbutton from '../button/Anchorbutton';
 import Solidbutton from '../button/Solidbutton';
-const Home = () => {
+import Imagebutton from '../button/Imagebutton';
+import { connect } from 'react-redux'
+import { useEffect } from 'react';
+
+//action creators
+import { AUTHENTICATION } from '../../redux/actions/index';
+
+const Home = (props) => {
+
+    const { userInfo, AUTHENTICATION } = props;
+
+    useEffect(() => {
+        AUTHENTICATION();
+    }, [AUTHENTICATION]);
+
+    const return_Button_On_UserStatus = () => {
+        switch (userInfo.status) {
+            case 'logged':
+                return <Imagebutton content="Logout" imageurl={userInfo.user.imageUrl} />
+            case 'notlogged':
+                return <Anchorbutton content={"Login"} link={"#"} icon={<ion-icon name="log-in"></ion-icon>} />;
+            default:
+                return <Solidbutton content="Loading..." />
+
+        }
+    }
+
     return (
         <div className="Home">
 
@@ -10,7 +36,9 @@ const Home = () => {
                     Guest
                 </div>
                 <div className="Home__top--right">
-                    <Anchorbutton content={"Login"} link={"#"} icon={<ion-icon name="log-in"></ion-icon>} />
+                    {
+                        return_Button_On_UserStatus()
+                    }
                 </div>
             </div>
 
@@ -34,4 +62,12 @@ const Home = () => {
     )
 }
 
-export default Home
+const mapStateToProp = (state) => {
+    return {
+        userInfo: state.userInfo
+    }
+}
+
+export default connect(mapStateToProp, {
+    AUTHENTICATION
+})(Home);

@@ -11,4 +11,12 @@ router.get("/list/:parameter", async (req, res) => {
     }
 })
 
+router.get("/userInfo", (req, res) => {
+    if (req.user) {
+        res.send(req.user);
+    } else {
+        res.send(false);
+    }
+});
+
 module.exports = router;

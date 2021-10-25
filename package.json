@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix client && npm run build --prefix client",
+    "both": "concurrently \"npm run dev\" \"npm start --prefix client\""
   },
   "author": "rahul dotel",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.3.0",
     "cookie-session": "^1.4.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",

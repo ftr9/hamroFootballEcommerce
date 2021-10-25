@@ -1,12 +1,12 @@
-import './Imagebutton.js';
+import './Imagebutton.css';
 const Imagebutton = (props) => {
 
-    const { content, image } = props;
+    const { content, imageurl } = props;
 
     return (
         <div className="Imagebutton">
             <div className="Imagebutton__image">
-                {image}
+                <img src={imageurl} alt="me"></img>
             </div>
             <div className="Imagebutton__content">
                 {content}
