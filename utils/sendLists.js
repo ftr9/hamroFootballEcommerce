@@ -18,15 +18,15 @@ module.exports = async (parameter) => {
             const lists1 = await championsLeagueModel.find();
             return lists1;
 
-        case "englishPremiereLeague":
+        case "englishpremiereleague":
             const lists2 = await englishPremiereLeagueModel.find();
             return lists2;
 
-        case "ereDivise":
+        case "eredivise":
             const lists3 = await ereDiviseModel.find();
             return lists3;
 
-        case "league1":
+        case "ligue1":
             const lists4 = await league1Model.find();
             return lists4;
 
@@ -34,7 +34,7 @@ module.exports = async (parameter) => {
             const lists5 = await majorLeagueSoccerModel.find();
             return lists5;
 
-        case "serieAtm":
+        case "serieATM":
             const lists6 = await serieATMModel.find();
             return lists6;
 
