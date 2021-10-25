@@ -6,8 +6,15 @@ export const AUTHENTICATION = () => {
         if (userInfo.data !== false) {
             disptach({ type: 'LOGGED_USER', body: userInfo.data });
         } else {
-            disptach({ type: 'NOT_LOGGED_USER', body: userInfo.data });
+            disptach({ type: 'NOT_LOGGED_USER' });
         }
 
+    }
+}
+
+export const AUTHENTICATION__LOGOUT = () => {
+    return async (dispatch) => {
+        await axios.get("/auth/google/logout");
+        dispatch({ type: 'NOT_LOGGED_USER' });
     }
 }

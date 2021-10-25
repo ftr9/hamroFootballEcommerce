@@ -6,11 +6,11 @@ import { connect } from 'react-redux'
 import { useEffect } from 'react';
 
 //action creators
-import { AUTHENTICATION } from '../../redux/actions/index';
+import { AUTHENTICATION, AUTHENTICATION__LOGOUT } from '../../redux/actions/index';
 
 const Home = (props) => {
 
-    const { userInfo, AUTHENTICATION } = props;
+    const { userInfo, AUTHENTICATION, AUTHENTICATION__LOGOUT } = props;
 
     useEffect(() => {
         AUTHENTICATION();
@@ -19,9 +19,9 @@ const Home = (props) => {
     const return_Button_On_UserStatus = () => {
         switch (userInfo.status) {
             case 'logged':
-                return <Imagebutton content="Logout" imageurl={userInfo.user.imageUrl} />
+                return <Imagebutton content="Logout" imageurl={userInfo.user.imageUrl} onClicked={() => AUTHENTICATION__LOGOUT()} />
             case 'notlogged':
-                return <Anchorbutton content={"Login"} link={"#"} icon={<ion-icon name="log-in"></ion-icon>} />;
+                return <Anchorbutton content={"Login"} link={`/auth/google/login`} icon={<ion-icon name="log-in"></ion-icon>} />;
             default:
                 return <Solidbutton content="Loading..." />
 
@@ -69,5 +69,6 @@ const mapStateToProp = (state) => {
 }
 
 export default connect(mapStateToProp, {
-    AUTHENTICATION
+    AUTHENTICATION,
+    AUTHENTICATION__LOGOUT
 })(Home);

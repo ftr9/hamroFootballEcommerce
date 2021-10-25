@@ -8,4 +8,12 @@ module.exports = (app) => {
             'Connection': 'keep-alive'
         }
     }))
+
+    app.use(createProxyMiddleware("/auth/google/*", {
+        target: 'http://localhost:3010',
+        secure: false,
+        headers: {
+            'Connection': 'keep-alive'
+        }
+    }))
 }

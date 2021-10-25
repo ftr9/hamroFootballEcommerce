@@ -24,16 +24,6 @@ app.use(passport.session());
 const appRoute = require("./routes/appRoute");
 app.use("/api/v1/hamrofootball", appRoute);
 
-
-//just for check later is removed on production 
-app.get("/userLog", (req, res) => {
-    if (req.user) {
-        res.send(req.user);
-    } else {
-        res.send("the user is not logged in")
-    }
-})
-
 const authRoute = require("./routes/authRoute");
 app.use("/auth/google/", authRoute);
 
