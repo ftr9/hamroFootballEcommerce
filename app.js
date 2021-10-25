@@ -1,12 +1,14 @@
 const express = require("express");
 const app = express();
-const morgan = require("morgan");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
 const dotenv = require("dotenv");
 dotenv.config({ path: './config/keys.env' });
 
-app.use(morgan('short'));
+if (process.env.NODE_ENV === 'development') {
+    const morgan = require("morgan");
+    app.use(morgan('short'));
+}
 
 require("./utils/passport");
 app.use(cookieSession({
