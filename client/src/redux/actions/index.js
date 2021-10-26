@@ -20,6 +20,11 @@ export const AUTHENTICATION__LOGOUT = () => {
 }
 
 
+export const OPEN_POPUP_DETAIL = (status, id) => {
+    return { type: status, data: id }
+}
+
+
 export const CHANGE_SEARCH = (searchname) => {
 
     return async (dispatch) => {
@@ -32,9 +37,6 @@ export const CHANGE_SEARCH = (searchname) => {
 
 
             const datas = await axios.get(`/api/v1/hamrofootball/list/${searchname}`);
-
-            console.log(datas);
-
             if (datas.data.status === 'success') {
 
                 dispatch({

@@ -20,8 +20,10 @@ const footballReducer = (state = initialData, action) => {
             datas: action.data.datas
         }
 
+    } else if (action.type === 'NO_INDIVIDUAL_SEARCH') {
+        return initialData
     } else {
-        return initialData;
+        return state;
     }
 
 }

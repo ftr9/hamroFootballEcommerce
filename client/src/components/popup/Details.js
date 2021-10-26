@@ -1,35 +1,43 @@
 import reactdom from 'react-dom';
 import './Details.css';
 import Solidbutton from '../button/Solidbutton';
-const Details = () => {
+import { connect } from 'react-redux';
+import { OPEN_POPUP_DETAIL } from '../../redux/actions/index';
+
+const Details = (props) => {
+
+    const { category, detail, OPEN_POPUP_DETAIL } = props;
+
     return (
         reactdom.createPortal(
             <div className="Details">
                 <div className="Details__card">
                     <div className="Details__card--left">
-                        <img src="/images/league/bundesliga/2010-2011-bundesliga-adidas-torfabrik-official-match-ball-small.png" alt="bundesliga"></img>
+                        <img src={`/images/league/${category}/${detail.image}`} alt={detail.name}></img>
                     </div>
                     <div className="Details__card--right">
-                        <div className="closeButton">
+                        <div className="closeButton" onClick={() => OPEN_POPUP_DETAIL('close', null)}>
                             <div>
                                 <ion-icon name="close"></ion-icon>
                             </div>
                         </div>
-                        <h2>Name</h2>
-                        <p className="detail_detail">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                        <h2>{detail.name}</h2>
+                        <p className="detail_detail">{detail.description}</p>
                         <div className="status">
-                            <div className="active">inStock</div>
-                            <div>currently available</div>
+                            <div className="active">{detail.inStock ? "InStock" : "Out of Stock"}</div>
+                            <div>{detail.inStock ? "Currently available" : "Not available"}</div>
                         </div>
                         <div className="brand">
-                            <p>Adidas Brand</p>
+                            <p>{detail.brand} Brand</p>
                         </div>
                         <div className="sizes">
                             <p>sizes</p>
                             <div className="sizes__size">
-                                <div className="sizes__box">3</div>
-                                <div className="sizes__box">4</div>
-                                <div className="sizes__box">5</div>
+                                {
+                                    detail.sizes.map((el) => {
+                                        return <div className="sizes__box" key={el}>{el}</div>
+                                    })
+                                }
                             </div>
                         </div>
 
@@ -44,4 +52,14 @@ const Details = () => {
     )
 }
 
-export default Details
+const mapStateToProp = (state) => {
+    const footballs = state.footballs.datas;
+    const CurrentFootball = footballs.filter(el => {
+        return el._id === state.detailPop.productId
+    })
+    return { category: state.footballs.category, detail: CurrentFootball[0] }
+}
+
+export default connect(mapStateToProp, {
+    OPEN_POPUP_DETAIL
+})(Details);

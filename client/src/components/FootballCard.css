@@ -8,6 +8,10 @@
   background-color: #c4c4c48c;
   box-shadow: 1px 1px 10px rgb(138, 138, 138);
   margin-bottom: 2rem;
+  transition: all 0.2s ease;
+}
+.footballCard:hover {
+  transform: translateY(-1rem);
 }
 .footballCard__name {
   margin: 1rem 0rem;
