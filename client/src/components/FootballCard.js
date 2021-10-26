@@ -1,10 +1,8 @@
 import './FootballCard.css';
 import Solidbutton from './button/Solidbutton';
 import { connect } from 'react-redux';
-import { OPEN_POPUP_DETAIL } from '../redux/actions';
-const FootballCard = ({ imageName, category, footballName, inStock, totalSold, price, brand, id, OPEN_POPUP_DETAIL }) => {
-
-
+import { OPEN_POPUP_DETAIL, ADD_TO_CART } from '../redux/actions';
+const FootballCard = ({ imageName, category, footballName, inStock, totalSold, price, brand, id, sizes, OPEN_POPUP_DETAIL, ADD_TO_CART }) => {
 
     return (
 
@@ -14,7 +12,7 @@ const FootballCard = ({ imageName, category, footballName, inStock, totalSold, p
                 <h3>{footballName}</h3>
             </div>
             <div className="footballCard__buttons">
-                <Solidbutton content="Add to cart" icon={<ion-icon name="cart"></ion-icon>} />
+                <Solidbutton content="Add to cart" icon={<ion-icon name="cart"></ion-icon>} onClicked={() => ADD_TO_CART(id, { imageName, footballName, price, sizes, category })} />
                 <Solidbutton content="Details" icon={<ion-icon name="chevron-forward"></ion-icon>} color="blue" onClicked={() => { OPEN_POPUP_DETAIL('open', id) }} />
             </div>
             <div className="footballCard__status">
@@ -31,5 +29,6 @@ const FootballCard = ({ imageName, category, footballName, inStock, totalSold, p
 }
 
 export default connect(null, {
-    OPEN_POPUP_DETAIL
+    OPEN_POPUP_DETAIL,
+    ADD_TO_CART
 })(FootballCard);

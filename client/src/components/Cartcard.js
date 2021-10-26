@@ -1,50 +1,51 @@
 import './Cartcard.css';
 import Solidbutton from './button/Solidbutton';
-import { useState } from 'react';
-const Cartcard = () => {
+import { UPDATE_CART, DELETE_CART, UPDATE_CART_SIZE } from '../redux/actions/index';
+import { connect } from 'react-redux';
 
+const Cartcard = ({ id, quantitys, category, price, sizess, name, imageName, selectedSize, UPDATE_CART, DELETE_CART, UPDATE_CART_SIZE }) => {
 
-    const [sizes, setSizes] = useState(5);
-    let [quantity, setQuantity] = useState(1);
 
     const setQuantityIncrement = () => {
-        setQuantity(++quantity);
+        //setQuantity(++quantity);
+        UPDATE_CART(id, 'icr', price);
     }
 
     const setQuantityDecrement = () => {
-        if (quantity > 1) {
-            setQuantity(--quantity);
+        if (quantitys > 1) {
+            //setQuantity(--quantity);
+            UPDATE_CART(id, 'dcr', price);
         }
     }
 
     const setSize = (size) => {
-        setSizes(size);
+        UPDATE_CART_SIZE(id, size);
     }
 
     return (
         <div className="Cartcard">
             <div className="Cartcard__left">
-                <img src="/images/league/bundesliga/2010-2011-bundesliga-adidas-torfabrik-official-match-ball-small.png" alt="league"></img>
+                <img src={`/images/league/${category}/${imageName}`} alt={name}></img>
             </div>
             <div className="Cartcard__middle">
                 <div className="Cartcard__price">
-                    400 -/
+                    {price} -/
                 </div>
                 <div className="Cartcard__name">
-                    Vedas
+                    {name}
                 </div>
                 <div className="Cartcard__sizes">
-                    sizes <div className="sizes__card" id={sizes === 3 ? "active" : ""} onClick={() => setSize(3)}>3</div>
-                    <div className="sizes__card" id={sizes === 4 ? "active" : ""} onClick={() => setSize(4)}>4</div>
-                    <div className="sizes__card" id={sizes === 5 ? "active" : ""} onClick={() => setSize(5)}>5</div>
+                    sizes <div className="sizes__card" id={selectedSize === 3 ? "active" : ""} onClick={() => setSize(3)}>3</div>
+                    <div className="sizes__card" id={selectedSize === 4 ? "active" : ""} onClick={() => setSize(4)}>4</div>
+                    <div className="sizes__card" id={selectedSize === 5 ? "active" : ""} onClick={() => setSize(5)}>5</div>
                 </div>
             </div>
 
             <div className="Cartcard__right">
-                <Solidbutton content="cancel" />
+                <Solidbutton content="cancel" onClicked={() => DELETE_CART(id)} />
                 <div className="Cartcard__quantity">
                     <div className="Cartcard__increase" onClick={() => setQuantityIncrement()}><ion-icon name="chevron-up-outline"></ion-icon></div>
-                    <div className="Cartcard__quantityBox">{quantity}</div>
+                    <div className="Cartcard__quantityBox">{quantitys}</div>
                     <div className="Cartcard__decrease" onClick={() => setQuantityDecrement()}><ion-icon name="chevron-down-outline"></ion-icon></div>
                 </div>
             </div>
@@ -52,4 +53,4 @@ const Cartcard = () => {
     )
 }
 
-export default Cartcard
+export default connect(null, { UPDATE_CART, DELETE_CART, UPDATE_CART_SIZE })(Cartcard);

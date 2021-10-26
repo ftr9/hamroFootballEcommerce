@@ -24,6 +24,83 @@ export const OPEN_POPUP_DETAIL = (status, id) => {
     return { type: status, data: id }
 }
 
+//imageName, footballName, price, sizes
+
+
+export const ADD_TO_CART = (id, detail) => {
+    return (dispatch, getState) => {
+        const store = { ...getState().carts };
+        if (store[id]) {
+            store[id].quantitys += 1;
+            store[id].price += detail.price
+        } else {
+            store[id] = {};
+            store[id].id = id;
+            store[id].quantitys = 1;
+            store[id].category = detail.category;
+            store[id].price = detail.price;
+            store[id].sizess = detail.sizes;
+            store[id].name = detail.footballName
+            store[id].imageName = detail.imageName
+            store[id].selectedSize = 5;
+
+        }
+
+        localStorage.setItem("addedToCart", JSON.stringify(store));
+        dispatch({ type: 'change', body: store })
+    }
+}
+
+export const UPDATE_CART = (id, type, price) => {
+    return (dispatch, getState) => {
+        const store = { ...getState().carts };
+        if (store[id]) {
+
+            if (type === 'icr') {
+                store[id].quantitys += 1;
+                store[id].price += price;
+            }
+            if (type === 'dcr') {
+                store[id].quantitys -= 1;
+                store[id].price -= price;
+            }
+
+        }
+        localStorage.setItem("addedToCart", JSON.stringify(store));
+        dispatch({ type: 'change', body: store });
+    }
+}
+
+export const UPDATE_CART_SIZE = (id, size) => {
+    return (dispatch, getState) => {
+        const store = { ...getState().carts };
+        if (store[id]) {
+            store[id].selectedSize = size;
+        }
+        localStorage.setItem("addedToCart", JSON.stringify(store));
+        dispatch({ type: 'change', body: store });
+    }
+}
+
+export const DELETE_CART = (id) => {
+    return (dispatch, getState) => {
+        const store = { ...getState().carts };
+        delete store[id];
+        localStorage.setItem("addedToCart", JSON.stringify(store));
+        dispatch({ type: 'change', body: store })
+    }
+}
+
+export const PLACE_ORDER = (datas) => {
+    return async (dispatch) => {
+        const confirmedOrder = await axios.post("/api/v1/hamrofootball/order", datas);
+        if (confirmedOrder.data.status !== 'fail') {
+            localStorage.removeItem("addedToCart");
+            dispatch({ type: 'change', body: {} });
+        }
+    }
+}
+
 
 export const CHANGE_SEARCH = (searchname) => {
 

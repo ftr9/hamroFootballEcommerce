@@ -11,6 +11,8 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('short'));
 }
 
+app.use(express.json());
+
 require("./utils/passport");
 app.use(cookieSession({
     keys: [process.env.COOKIE_KEY],

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import './Navbar.css';
 import { useState } from "react";
-const Navbar = () => {
+import { connect } from 'react-redux';
+
+const Navbar = ({ totalAddedItem }) => {
 
     const [currentTab, setCurrentTab] = useState("Home");
 
@@ -31,7 +33,8 @@ const Navbar = () => {
                     <p>Shop now</p>
                 </Link>
             </li>
-            <li>
+            <li id="ADDTOCART">
+                <div className="ADDTOCART__NUM">{totalAddedItem}</div>
                 <Link
                     to="/cart"
                     onClick={() => updateActiveState("Cart")}
@@ -65,4 +68,12 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+const mapStateToProp = (state) => {
+    let quantity = 0;
+    Object.values(state.carts).forEach((el) => quantity += el.quantitys);
+    return {
+        totalAddedItem: quantity
+    }
+}
+
+export default connect(mapStateToProp)(Navbar);

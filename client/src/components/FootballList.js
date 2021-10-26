@@ -17,7 +17,8 @@ const FootballList = (props) => {
                         inStock={el.inStock}
                         totalSold={el.totalSold}
                         price={el.price}
-                        brand={el.brand} />
+                        brand={el.brand}
+                        sizes={el.sizes} />
                 })
             }
 

@@ -18,3 +18,9 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.cart__Empty {
+  text-align: center;
+}
+.Cartpage__products img {
+  height: 50rem;
+}

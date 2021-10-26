@@ -9,6 +9,7 @@ const Productpage = (props) => {
 
 
     const { footballs, CHANGE_SEARCH, isDetailPoPOpen } = props;
+
     const checkCategory_And_Return_List = () => {
 
         if (footballs.category === 'league') {
@@ -57,7 +58,7 @@ const Productpage = (props) => {
 const mapStateToProp = (state) => {
     return {
         footballs: state.footballs,
-        isDetailPoPOpen: state.detailPop.isOpen
+        isDetailPoPOpen: state.detailPop.isOpen,
     }
 }
 

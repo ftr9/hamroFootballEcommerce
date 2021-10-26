@@ -1,0 +1,41 @@
+.Placeorder {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.705);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Placeorder__form {
+  width: 40rem;
+  background-color: white;
+  padding: 4rem;
+  border-radius: 0.5rem;
+}
+.Placeorder__form input {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  border-radius: 0.2rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border: 1px solid black;
+}
+.Placeorder__form input:focus {
+  outline: none;
+}
+
+.Placeorder__submit {
+  width: 60%;
+  margin-top: 4rem;
+}
+
+.Placeorder__formClose {
+  font-size: 3rem;
+  text-align: right;
+}
+.PlaceOrder__formError {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
