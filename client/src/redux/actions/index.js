@@ -47,7 +47,7 @@ export const ADD_TO_CART = (id, detail) => {
         }
 
         localStorage.setItem("addedToCart", JSON.stringify(store));
-        dispatch({ type: 'change', body: store })
+        dispatch({ type: 'change', body: JSON.parse(localStorage.getItem("addedToCart")) })
     }
 }
 
@@ -67,7 +67,7 @@ export const UPDATE_CART = (id, type, price) => {
 
         }
         localStorage.setItem("addedToCart", JSON.stringify(store));
-        dispatch({ type: 'change', body: store });
+        dispatch({ type: 'change', body: JSON.parse(localStorage.getItem("addedToCart")) });
     }
 }
 
@@ -78,7 +78,7 @@ export const UPDATE_CART_SIZE = (id, size) => {
             store[id].selectedSize = size;
         }
         localStorage.setItem("addedToCart", JSON.stringify(store));
-        dispatch({ type: 'change', body: store });
+        dispatch({ type: 'change', body: JSON.parse(localStorage.getItem("addedToCart")) });
     }
 }
 
@@ -87,7 +87,7 @@ export const DELETE_CART = (id) => {
         const store = { ...getState().carts };
         delete store[id];
         localStorage.setItem("addedToCart", JSON.stringify(store));
-        dispatch({ type: 'change', body: store })
+        dispatch({ type: 'change', body: JSON.parse(localStorage.getItem("addedToCart")) })
     }
 }
 

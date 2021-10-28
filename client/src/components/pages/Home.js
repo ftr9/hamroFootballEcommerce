@@ -4,6 +4,7 @@ import Solidbutton from '../button/Solidbutton';
 import Imagebutton from '../button/Imagebutton';
 import { connect } from 'react-redux'
 import { useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 //action creators
 import { AUTHENTICATION, AUTHENTICATION__LOGOUT } from '../../redux/actions/index';
@@ -11,6 +12,7 @@ import { AUTHENTICATION, AUTHENTICATION__LOGOUT } from '../../redux/actions/inde
 const Home = (props) => {
 
     const { userInfo, AUTHENTICATION, AUTHENTICATION__LOGOUT } = props;
+    const history = useHistory();
 
     useEffect(() => {
         AUTHENTICATION();
@@ -33,7 +35,9 @@ const Home = (props) => {
 
             <div className="Home__top">
                 <div className="Home__top--left">
-                    Guest
+                    {
+                        userInfo.status === 'logged' ? userInfo.user.name : 'guest'
+                    }
                 </div>
                 <div className="Home__top--right">
                     {
@@ -56,7 +60,7 @@ const Home = (props) => {
             </div>
 
             <div className="Home__bottom">
-                <Solidbutton content="Admin ?" icon={<ion-icon name="person-circle"></ion-icon>} />
+                <Solidbutton content="Admin ?" icon={<ion-icon name="person-circle"></ion-icon>} onClicked={() => history.push('/admin')} />
             </div>
         </div>
     )

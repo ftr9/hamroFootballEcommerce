@@ -3,19 +3,26 @@
   overflow-y: scroll;
 }
 
+.myOrders__noorder {
+  text-align: center;
+}
+.myOrders__noorder img {
+  height: 60rem;
+}
 .OrderCart {
   width: 90rem;
-  background-color: #c4c4c4;
+  background-color: #dbdbdb;
   margin: 2.5rem auto;
   padding: 2rem 1.5rem;
   border-radius: 0.5rem;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.308);
 }
 
 .OrderCart__id {
   padding: 0.5rem 1rem;
   background-color: #0a6c0a;
   border-radius: 10rem;
-  width: 15rem;
+  width: 22rem;
   font-size: 1.3rem;
   font-weight: bold;
   text-align: center;
@@ -51,15 +58,19 @@
   height: 3.5rem;
   width: 3.5rem;
   border-radius: 50%;
-  background-color: #ff0000;
+  background-color: #000000;
   margin: 0 auto;
 }
 
 .OrderCart__status--line {
   width: 12rem;
   height: 0.5rem;
-  background-color: red;
+  background-color: rgb(0, 0, 0);
   transform: translateY(-1rem);
+}
+
+.ACTIVE {
+  background-color: red;
 }
 
 .OrderCart__status--content p {

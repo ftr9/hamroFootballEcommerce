@@ -1,88 +1,111 @@
 import './Adminpage.css';
 import Solidbutton from '../button/Solidbutton';
 import Orderedcart from '../Orderedcart';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import axios from 'axios';
 const Adminpage = () => {
+
+    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         let data = prompt("Enter the passcode ...");
         while (data !== '134') {
             data = prompt("Enter the passcode");
         }
+        (async () => {
+            const orders = await axios.get("/api/v1/hamrofootball/adminorders");
+            setOrders(orders.data.orders);
+        })();
+
+
+
     }, []);
+
+    const history = useHistory();
+
+    const onLogoutClicked = () => {
+        history.push("/");
+    }
+
+    const returnTotalPrice = (order) => {
+        let sum = 0;
+        order.forEach(el => {
+            sum += el.price;
+        });
+        return sum;
+    }
+
+
+    const onDelete = async (id) => {
+        const deletedOrder = await axios.post(`/api/v1/hamrofootball/deleteorder/${id}`);
+        if (deletedOrder.data.status !== 'fail') {
+            const orderLeft = orders.filter(el => deletedOrder.data.order._id !== el._id);
+            setOrders(orderLeft);
+        }
+    }
+
+    const renderUI = () => {
+        if (orders.length !== 0) {
+            return orders.map((el) => {
+                return (
+                    <div className="Adminpage__ordercard" key={el._id}>
+                        <div className="Adminpage__ordercardtop">
+                            <p>{el._id}</p>
+                            <p>{el.userId.name}</p>
+                            <Solidbutton content="delete" icon={<ion-icon name="trash"></ion-icon>} onClicked={() => onDelete(el._id)} />
+                        </div>
+                        <div className="Adminpage__ordercardbody">
+                            <div className="Adminpage__ordercardleft">
+                                {
+                                    Object.values(el.orders).map((el) => {
+                                        return <Orderedcart key={el.id} price={el.price} name={el.name} selectedSize={el.selectedSize} quantitys={el.quantitys} imageName={el.imageName} category={el.category} />
+                                    })
+
+                                }
+                            </div>
+                            <div className="Adminpage__ordercardright">
+                                <div className="Adminpage__location">
+                                    <div className="Adminpage__location--place">{el.location}</div>
+                                    <div className="Adminpage__location--latlong">{el.phone}</div>
+                                </div>
+                                <div className="Adminpage__buttons">
+                                    <select className="Adminpage__select">
+                                        <option>not Seen</option>
+                                        <option>Seen</option>
+                                        <option>on Way</option>
+                                        <option>Delivered</option>
+                                    </select>
+                                    <Solidbutton content={`Total ${returnTotalPrice(Object.values(el.orders))}-/`} />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                )
+            })
+        }
+    }
 
     return (
         <div className="Adminpage">
             <div className="Adminpage__top">
                 <div className="Adminpage__toprole">Admin</div>
-                <Solidbutton content="Log out" />
+                <Solidbutton content="Log out" onClicked={onLogoutClicked} />
             </div>
 
             <div className="Adminpage__body">
 
-                <div className="Adminpage__ordercard">
-                    <div className="Adminpage__ordercardtop">
-                        <p>order 211321312323</p>
-                        <p>rahul dotel</p>
-                        <Solidbutton content="delete" icon={<ion-icon name="trash"></ion-icon>} />
-                    </div>
-                    <div className="Adminpage__ordercardbody">
-                        <div className="Adminpage__ordercardleft">
-                            <Orderedcart />
-                        </div>
-                        <div className="Adminpage__ordercardright">
-                            <div className="Adminpage__location">
-                                <div className="Adminpage__location--place">Pepsicola,kathmandu  suncity apartment</div>
-                                <div className="Adminpage__location--latlong">Lat:30.5 long:45.56</div>
-                            </div>
-                            <div className="Adminpage__buttons">
-                                <select className="Adminpage__select">
-                                    <option>not Seen</option>
-                                    <option>Seen</option>
-                                    <option>on Way</option>
-                                    <option>Delivered</option>
-                                </select>
-                                <Solidbutton content="Total 3400-/" />
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
+                {
+                    renderUI()
+                }
 
 
 
 
-
-
-
-                <div className="Adminpage__ordercard">
-                    <div className="Adminpage__ordercardtop">
-                        <p>order 211321312323</p>
-                        <p>rahul dotel</p>
-                        <Solidbutton content="delete" icon={<ion-icon name="trash"></ion-icon>} />
-                    </div>
-                    <div className="Adminpage__ordercardbody">
-                        <div className="Adminpage__ordercardleft">
-                            <Orderedcart />
-                        </div>
-                        <div className="Adminpage__ordercardright">
-                            <div className="Adminpage__location">
-                                <div className="Adminpage__location--place">Pepsicola,kathmandu 35 near suncity apartment</div>
-                                <div className="Adminpage__location--latlong">Lat:30.5 long:45.56</div>
-                            </div>
-                            <div className="Adminpage__buttons">
-                                <select className="Adminpage__select">
-                                    <option>not Seen</option>
-                                    <option>Seen</option>
-                                    <option>on Way</option>
-                                    <option>Delivered</option>
-                                </select>
-                                <Solidbutton content="Total 3400-/" />
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
 
             </div>
 

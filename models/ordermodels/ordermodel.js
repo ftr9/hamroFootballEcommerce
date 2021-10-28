@@ -20,6 +20,6 @@ const orderSchema = new mongoose.Schema({
         type: String,
         default: 'not seen'
     }
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model("orders", orderSchema);

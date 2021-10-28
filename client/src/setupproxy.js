@@ -9,6 +9,22 @@ module.exports = (app) => {
     }))*/
 
     app.use(
+        '/api/v1/hamrofootball/adminorders',
+        createProxyMiddleware({
+            target: 'http://localhost:3010',
+            changeOrigin: true,
+        })
+    );
+
+    app.use(
+        '/api/v1/hamrofootball/myorders',
+        createProxyMiddleware({
+            target: 'http://localhost:3010',
+            changeOrigin: true,
+        })
+    );
+
+    app.use(
         '/api/v1/*',
         createProxyMiddleware({
             target: 'http://localhost:3010',

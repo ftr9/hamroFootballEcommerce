@@ -1,62 +1,87 @@
 import Orderedcart from '../Orderedcart';
 import Solidbutton from '../button/Solidbutton';
-
+import OrderCartstatus from './OrderCartstatus';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import './Myorder.css';
 const Myorder = () => {
-    return (
-        <div className="myOrders">
-            <div className="OrderCart">
-                <div className="OrderCart__id">{123454554545546}</div>
-                <div className="OrderCart__underline"></div>
 
-                <div className="OrderCart__orders">
-                    <Orderedcart />
-                    <Orderedcart />
+    const [myOrders, setMyOrders] = useState("");
+    const [loading, setLoading] = useState(true);
+
+
+    useEffect(() => {
+        (async () => {
+            const orders = await axios.get("/api/v1/hamrofootball/myorders");
+            if (orders.data.status === 'success') {
+                setLoading(false);
+                setMyOrders(orders.data.orders);
+            }
+        })();
+    }, []);
+
+    const returnTotalPrice = (order) => {
+        let sum = 0;
+        order.forEach(el => {
+            sum += el.price;
+        });
+        return sum;
+    }
+
+
+    const returnOrdersUI = () => {
+
+        if (loading) {
+            return 'LOADING ...';
+        }
+
+        if (myOrders.length !== 0) {
+
+            return myOrders.map((el) => {
+                return (<div className="OrderCart" key={el._id}>
+                    <div className="OrderCart__id"># {el._id}</div>
+                    <div className="OrderCart__underline"></div>
+
+                    <div className="OrderCart__orders">
+                        {
+                            Object.values(el.orders).map((el) => {
+                                return <Orderedcart key={el.id} price={el.price} name={el.name} selectedSize={el.selectedSize} quantitys={el.quantitys} imageName={el.imageName} category={el.category} />
+                            })
+                        }
+
+                    </div>
+
+
+                    <div className="OrderCart__underline"></div>
+
+                    <div className="OrderCart__totaldisplay">
+                        <Solidbutton content={`total  ${returnTotalPrice(Object.values(el.orders))}-/`} />
+                    </div>
+
+                    <OrderCartstatus status={el.orderStatus} />
 
                 </div>
+                )
 
 
-                <div className="OrderCart__underline"></div>
-
-                <div className="OrderCart__totaldisplay">
-                    <Solidbutton content={"total  1400-/"} />
-                </div>
-
-
-                <div className="OrderCart__status">
-
-                    <div className="OrderCart__status--content">
-                        <div className="OrderCart__status--bubble"></div>
-                        <p>unseen</p>
-                    </div>
-
-                    <div className="OrderCart__status--line"></div>
-
-                    <div className="OrderCart__status--content">
-                        <div className="OrderCart__status--bubble"></div>
-                        <p>seen</p>
-                    </div>
-
-                    <div className="OrderCart__status--line"></div>
-
-                    <div className="OrderCart__status--content">
-                        <div className="OrderCart__status--bubble"></div>
-                        <p>Onway</p>
-                    </div>
-
-                    <div className="OrderCart__status--line"></div>
-
-                    <div className="OrderCart__status--content">
-                        <div className="OrderCart__status--bubble"></div>
-                        <p>delivered</p>
-                    </div>
-                </div>
-
-
+            })
+        } else {
+            return <div className="myOrders__noorder">
+                <h3>You have no orders currently</h3>
+                <img src={'/images/emptyCart.png'} alt={"empty cart"}></img>
             </div>
+        }
 
+
+    }
+
+    return (
+
+        <div className="myOrders" >
+            {
+                returnOrdersUI()
+            }
         </div>
-
 
     )
 }

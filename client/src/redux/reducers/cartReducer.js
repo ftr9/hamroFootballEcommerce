@@ -1,4 +1,4 @@
-const items = window.localStorage.getItem("addedToCart");
+const items = localStorage.getItem("addedToCart");
 const cartReducer = (state, action) => {
 
     switch (action.type) {
@@ -8,7 +8,7 @@ const cartReducer = (state, action) => {
             return data;
         default:
             if (items) {
-                return JSON.parse(items);
+                return JSON.parse(localStorage.getItem("addedToCart"));
             } else {
                 return {}
             }
