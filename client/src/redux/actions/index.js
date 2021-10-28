@@ -91,9 +91,21 @@ export const DELETE_CART = (id) => {
     }
 }
 
-export const PLACE_ORDER = (datas) => {
+export const PLACE_ORDER_COD = (datas) => {
     return async (dispatch) => {
+        datas.paymentType = 'cash on delivery';
         const confirmedOrder = await axios.post("/api/v1/hamrofootball/order", datas);
+        if (confirmedOrder.data.status !== 'fail') {
+            localStorage.removeItem("addedToCart");
+            dispatch({ type: 'change', body: {} });
+        }
+    }
+}
+
+export const PLACE_ORDER_DIGITAl = (datas) => {
+    return async (dispatch) => {
+        datas.mainOrder.paymentType = 'payed digitally';
+        const confirmedOrder = await axios.post("/api/v1/hamrofootball/stripe", datas);
         if (confirmedOrder.data.status !== 'fail') {
             localStorage.removeItem("addedToCart");
             dispatch({ type: 'change', body: {} });

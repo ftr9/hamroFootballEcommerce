@@ -80,6 +80,7 @@ const Adminpage = ({ socket }) => {
                                 <div className="Adminpage__location">
                                     <div className="Adminpage__location--place">{el.location}</div>
                                     <div className="Adminpage__location--latlong">{el.phone}</div>
+                                    <div className="Adminpage__location--latlong">{el.paymentType}</div>
                                 </div>
                                 <div className="Adminpage__buttons">
                                     <select className="Adminpage__select" defaultValue={el.orderStatus} onChange={(e) => onStatusOptionChange(el.userId._id, el._id, e.target.value)}>

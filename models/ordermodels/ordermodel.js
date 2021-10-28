@@ -19,6 +19,10 @@ const orderSchema = new mongoose.Schema({
     orderStatus: {
         type: String,
         default: 'not seen'
+    },
+    paymentType: {
+        type: 'String',
+        required: true
     }
 }, { timestamps: true })
 

@@ -1,6 +1,7 @@
 const ordermodel = require("../models/ordermodels/ordermodel");
 const serverEvent = require("../utils/orderEvent");
 const returnLists = require("../utils/sendLists");
+const stripe = require("stripe")(process.env.STRIPE_SECRETKEY);
 
 serverEvent.on("OrderChange", async (data) => {
     try {
@@ -64,6 +65,29 @@ exports.deleteOrders = async (req, res) => {
         console.log(err.message);
         res.status(404).json({ status: 'fail', message: "something went very wrong" });
     }
+}
+
+
+exports.StripePayment = async (req, res) => {
+
+    try {
+        await stripe.charges.create({
+            amount: 500,
+            currency: 'usd',
+            source: req.body.stripeToken.id,
+            description: 'football payment'
+
+        });
+
+        const order = await ordermodel.create(req.body.mainOrder);
+        res.status(201).json({ status: 'success', order });
+    } catch (err) {
+
+        console.log(err);
+        res.status(404).json({ status: 'fail' });
+    }
+
+
 }
 
 

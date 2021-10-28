@@ -61,6 +61,7 @@ const Myorder = ({ socket }) => {
                     <div className="OrderCart__underline"></div>
 
                     <div className="OrderCart__totaldisplay">
+                        <h3>{el.paymentType}</h3>
                         <Solidbutton content={`total  ${returnTotalPrice(Object.values(el.orders))}-/`} />
                     </div>
 

@@ -26,8 +26,10 @@
 }
 
 .Placeorder__submit {
-  width: 60%;
+  width: 100%;
   margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .Placeorder__formClose {

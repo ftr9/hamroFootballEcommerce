@@ -25,6 +25,16 @@ module.exports = (app) => {
     );
 
     app.use(
+        '/api/v1/hamrofootball/stripe',
+        createProxyMiddleware({
+            target: 'http://localhost:3010',
+            changeOrigin: true,
+        })
+    );
+
+
+
+    app.use(
         '/api/v1/*',
         createProxyMiddleware({
             target: 'http://localhost:3010',
