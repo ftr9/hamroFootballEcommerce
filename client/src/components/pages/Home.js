@@ -11,7 +11,7 @@ import { AUTHENTICATION, AUTHENTICATION__LOGOUT } from '../../redux/actions/inde
 
 const Home = (props) => {
 
-    const { userInfo, AUTHENTICATION, AUTHENTICATION__LOGOUT } = props;
+    const { userInfo, AUTHENTICATION, AUTHENTICATION__LOGOUT, socket } = props;
     const history = useHistory();
 
     useEffect(() => {
@@ -21,6 +21,7 @@ const Home = (props) => {
     const return_Button_On_UserStatus = () => {
         switch (userInfo.status) {
             case 'logged':
+                socket.emit("userRoomId", userInfo.user._id);
                 return <Imagebutton content="Logout" imageurl={userInfo.user.imageUrl} onClicked={() => AUTHENTICATION__LOGOUT()} />
             case 'notlogged':
                 return <Anchorbutton content={"Login"} link={`/auth/google/login`} icon={<ion-icon name="log-in"></ion-icon>} />;
@@ -68,7 +69,8 @@ const Home = (props) => {
 
 const mapStateToProp = (state) => {
     return {
-        userInfo: state.userInfo
+        userInfo: state.userInfo,
+        socket: state.socket
     }
 }
 

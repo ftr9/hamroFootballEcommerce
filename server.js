@@ -1,4 +1,12 @@
 const app = require("./app");
+const http = require("http");
+const server = http.createServer(app);
+const io = require("socket.io")(server, {
+    cors: { origin: "http://localhost:3040", methods: ["GET", "POST"] }
+});
+
+const serverEvent = require("./utils/orderEvent");
+
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config({ path: './config/keys.env' });
@@ -13,8 +21,25 @@ dotenv.config({ path: './config/keys.env' });
     }
 })();
 
+io.on("connection", (socket) => {
+    socket.on("userRoomId", (roomId) => {
+        console.log(roomId);
+        socket.join(roomId);
+    })
+
+    socket.on("orderStatusChange", (data) => {
+
+        io.to(data.userid).emit("orderChangedByAdmin", data.orderState);
+        serverEvent.emit("OrderChange", {
+            orderId: data.orderId,
+            status: data.orderState
+        });
+
+    })
+})
+
 const PORT = process.env.PORT || 3020;
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Sever started on PORT ${PORT}`);
 })

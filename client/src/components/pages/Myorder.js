@@ -4,21 +4,27 @@ import OrderCartstatus from './OrderCartstatus';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './Myorder.css';
-const Myorder = () => {
+import { useHistory } from 'react-router';
+const Myorder = ({ socket }) => {
 
     const [myOrders, setMyOrders] = useState("");
     const [loading, setLoading] = useState(true);
-
+    const history = useHistory();
 
     useEffect(() => {
         (async () => {
-            const orders = await axios.get("/api/v1/hamrofootball/myorders");
-            if (orders.data.status === 'success') {
-                setLoading(false);
-                setMyOrders(orders.data.orders);
+            try {
+                const orders = await axios.get("/api/v1/hamrofootball/myorders");
+                if (orders.data.status === 'success') {
+                    setLoading(false);
+                    setMyOrders(orders.data.orders);
+                }
+            } catch (err) {
+                alert("You are not logged in please login to see your orders");
+                history.push("/");
             }
         })();
-    }, []);
+    }, [history]);
 
     const returnTotalPrice = (order) => {
         let sum = 0;
@@ -86,4 +92,6 @@ const Myorder = () => {
     )
 }
 
-export default Myorder
+
+
+export default Myorder;

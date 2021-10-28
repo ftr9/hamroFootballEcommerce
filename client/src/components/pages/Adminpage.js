@@ -4,7 +4,9 @@ import Orderedcart from '../Orderedcart';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import axios from 'axios';
-const Adminpage = () => {
+import { connect } from 'react-redux';
+
+const Adminpage = ({ socket }) => {
 
     const [orders, setOrders] = useState([]);
 
@@ -13,14 +15,16 @@ const Adminpage = () => {
         while (data !== '134') {
             data = prompt("Enter the passcode");
         }
+        //make admin room id
+        socket.emit("userRoomId", "admin123456");
+
+        //fetch all order from database
         (async () => {
             const orders = await axios.get("/api/v1/hamrofootball/adminorders");
             setOrders(orders.data.orders);
         })();
 
-
-
-    }, []);
+    }, [socket]);
 
     const history = useHistory();
 
@@ -43,6 +47,14 @@ const Adminpage = () => {
             const orderLeft = orders.filter(el => deletedOrder.data.order._id !== el._id);
             setOrders(orderLeft);
         }
+    }
+
+    const onStatusOptionChange = (userid, orderId, orderState) => {
+        socket.emit("orderStatusChange", {
+            userid,
+            orderId,
+            orderState
+        })
     }
 
     const renderUI = () => {
@@ -70,11 +82,11 @@ const Adminpage = () => {
                                     <div className="Adminpage__location--latlong">{el.phone}</div>
                                 </div>
                                 <div className="Adminpage__buttons">
-                                    <select className="Adminpage__select">
+                                    <select className="Adminpage__select" defaultValue={el.orderStatus} onChange={(e) => onStatusOptionChange(el.userId._id, el._id, e.target.value)}>
                                         <option>not Seen</option>
-                                        <option>Seen</option>
-                                        <option>on Way</option>
-                                        <option>Delivered</option>
+                                        <option>seen</option>
+                                        <option>Onway</option>
+                                        <option>delivered</option>
                                     </select>
                                     <Solidbutton content={`Total ${returnTotalPrice(Object.values(el.orders))}-/`} />
                                 </div>
@@ -113,4 +125,10 @@ const Adminpage = () => {
     )
 }
 
-export default Adminpage
+const mapStateToProp = (state) => {
+    return {
+        socket: state.socket
+    }
+}
+
+export default connect(mapStateToProp)(Adminpage);
