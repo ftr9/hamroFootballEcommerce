@@ -5,6 +5,7 @@
   flex-direction: column;
   list-style: none;
 }
+
 .Navbar li a {
   text-decoration: none;
   display: block;

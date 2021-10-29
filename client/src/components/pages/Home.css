@@ -3,6 +3,7 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 .Home::before {
   content: 'FOOTBALL';
@@ -39,6 +40,7 @@
 .Home__middle {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .Home__middle--content {
@@ -97,5 +99,84 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 1000px) {
+  .Home__middle--image img {
+    height: 55rem;
+  }
+}
+
+@media (max-width: 890px) {
+  .Home {
+    padding: 3rem;
+  }
+}
+@media (max-width: 850px) {
+  .Home {
+    width: 700px;
+  }
+}
+@media (max-width: 760px) {
+  .Home__middle--image img {
+    height: 50rem;
+  }
+  .Home__middle--contenttitle {
+    font-size: 4rem;
+  }
+  .Home {
+    width: 100%;
+  }
+  .Home__middle--content p {
+    font-size: 1.4rem;
+  }
+  .Home__middle {
+    height: 90vh;
+  }
+}
+@media (max-width: 650px) {
+  .Home {
+    padding: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .Home__middle--image img {
+    height: 40rem;
+  }
+}
+@media (max-width: 520px) {
+  .Home__middle {
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 80vh;
+  }
+  .Home__middle--content {
+    width: 100%;
+  }
+  .Home__middle--image {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: -7rem;
+    left: 0;
+    z-index: -1;
+  }
+  .Home__middle--image img {
+    height: 32rem;
+    transform: translateX(-4rem);
+  }
+  .Home__middle--image {
+    text-align: right;
+  }
+  .Home__middle--content {
+    color: white;
+  }
+  .Home__middle--content p {
+    font-size: 1.4rem;
+  }
+  .Home__middle--contenttitle {
+    text-shadow: 1px 1px 10px black;
+    line-height: 1.2;
   }
 }
