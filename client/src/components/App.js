@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import About from './pages/About';
 import Cart from './pages/Cart';
@@ -9,27 +9,26 @@ import Navbar from './Navbar';
 import Adminpage from './pages/Adminpage';
 
 const App = () => {
-    return (
-        <div className="App">
-            <Router>
-                <div className="App__navigation">
-                    <h2>HamroFoot.</h2>
-                    <Navbar />
-                </div>
-                <div className="App__pages">
-                    <Switch>
-                        <Route exact path="/" component={Home}></Route>
-                        <Route exact path="/cart" component={Cart}></Route>
-                        <Route exact path="/about" component={About}></Route>
-                        <Route exact path="/myorders" component={Myorder}></Route>
-                        <Route exact path="/products" component={Productpage}></Route>
-                        <Route exact path="/admin" component={Adminpage} ></Route>
-                    </Switch>
-                </div>
-            </Router>
+  return (
+    <div className="App">
+      <Router>
+        <div className="App__navigation">
+          <h2>HamroFoot.</h2>
+          <Navbar />
         </div>
+        <div className="App__pages">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/myorders" element={<Myorder />}></Route>
+            <Route path="/products" element={<Productpage />}></Route>
+            <Route path="/admin" element={<Adminpage />}></Route>
+          </Routes>
+        </div>
+      </Router>
+    </div>
+  );
+};
 
-    )
-}
-
-export default App
+export default App;
