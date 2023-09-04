@@ -1,0 +1,28 @@
+user who logged in with email
+{
+  "nickname": "smaranx2",
+  "name": "smaranx2@gmail.com",
+  "picture": "https://s.gravatar.com/avatar/1622c61cecd8f807b921f69f73c499f7?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fsm.png",
+  "updated_at": "2023-09-04T09:27:38.332Z",
+  "email": "smaranx2@gmail.com",
+  "email_verified": false,
+  "sub": "auth0|64f5a30ad27df9956389c409",
+  "sid": "_TVaspIrN02bJ6lmsAQmivswQpiiGhNR"
+}
+
+
+
+user who logged in with social medias
+{
+  "given_name": "Rahul",
+  "family_name": "Dotel",
+  "nickname": "csit191806_rahul",
+  "name": "Rahul Dotel",
+  "picture": "https://lh3.googleusercontent.com/a/AAcHTtcIrqYmR4DKpJQBWrf2-o_vSHFOIiWxJ7IS1rfnI3E46A=s96-c",
+  "locale": "en",
+  "updated_at": "2023-09-04T09:23:48.280Z",
+  "email": "csit191806_rahul@achsnepal.edu.np",
+  "email_verified": true,
+  "sub": "google-oauth2|117550720600729470765",
+  "sid": "tzzkvIbegpAsRWKl-n3QxWNltsFrvkHo"
+}
