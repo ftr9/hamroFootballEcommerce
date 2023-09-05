@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect, useSelector } from 'react-redux';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const useFetchOnLogin = () => {
   const [isfetching, setFetching] = useState(true);
@@ -25,7 +26,6 @@ const useFetchOnLogin = () => {
     (async () => {
       try {
         const orders = await axios.get('/api/v1/hamrofootball/adminorders');
-        console.log(orders);
         setOrders(orders.data.orders);
       } catch (err) {
         console.log(err);
@@ -65,6 +65,7 @@ const Adminpage = ({ socket }) => {
     ) {
       socket.emit('userRoomId', 'admin123456');
     } else {
+      toast.warn('You are not authorized to access Admin page  !!!');
       history('/');
     }
   }, [socket, authStatus, user, history, isAuthenticating]);
