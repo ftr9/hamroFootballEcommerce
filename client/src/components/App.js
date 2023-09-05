@@ -9,10 +9,13 @@ import Navbar from './Navbar';
 import Adminpage from './pages/Adminpage';
 import CheckOut from './pages/Checkout';
 import Successfull from './pages/Successfull';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <div className="App">
+      <ToastContainer />
       <Router>
         <div className="App__navigation">
           <h2>HamroFoot.</h2>
