@@ -3,7 +3,6 @@ import './CheckOut.css';
 import { useDispatch, useSelector } from 'react-redux';
 import useShipAddressFormState from './hooks/useShipAddressFormState';
 import StripePayment from 'react-stripe-checkout';
-import { PLACE_ORDER_COD, PLACE_ORDER_DIGITAl } from '../../../redux/actions';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
