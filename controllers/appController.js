@@ -4,6 +4,7 @@ const returnLists = require('../utils/sendLists');
 const stripe = require('stripe')(process.env.STRIPE_SECRETKEY);
 
 serverEvent.on('OrderChange', async data => {
+  console.log(data);
   try {
     await ordermodel.findByIdAndUpdate(data.orderId, {
       orderStatus: data.status,
@@ -69,10 +70,7 @@ exports.getMyOrders = async (req, res) => {
 };
 exports.getAdminOrders = async (req, res) => {
   try {
-    const order = await ordermodel
-      .find()
-      .populate('userId')
-      .sort({ createdAt: -1 });
+    const order = await ordermodel.find().sort({ createdAt: -1 });
     res.status(200).json({ status: 'success', orders: order });
   } catch (err) {
     res.status(404).json({
