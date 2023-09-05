@@ -13,25 +13,11 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 
 //AUTHO_By_OKTA
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: 'a long, randomly-generated string stored in env',
-  baseURL: 'http://localhost:3010',
-  clientID: 'LXOadcf7MSNTd34YkIicGQ3dtOLNMzVq',
-  issuerBaseURL: 'https://rahuldotel.jp.auth0.com',
-};
+const { config } = require('./config/AuthConfig');
 
 app.use(auth(config));
 
 //SAMPLE
-app.get('/', (req, res) => {
-  if (req.oidc.isAuthenticated()) {
-    res.send('Logged in');
-  } else {
-    res.send('Not logged in ');
-  }
-});
 
 app.get('/user', (req, res) => {
   res.status(200).json(req.oidc.user);
