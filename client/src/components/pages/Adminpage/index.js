@@ -1,6 +1,6 @@
 import './Adminpage.css';
-import Solidbutton from '../button/Solidbutton';
-import Orderedcart from '../Orderedcart';
+import Solidbutton from '../../button/Solidbutton';
+import Orderedcart from '../../Orderedcart';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';

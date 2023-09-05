@@ -1,12 +1,12 @@
-import Orderedcart from '../Orderedcart';
-import Solidbutton from '../button/Solidbutton';
-import OrderCartstatus from './OrderCartstatus';
+import Orderedcart from '../../Orderedcart';
+import Solidbutton from '../../button/Solidbutton';
+import OrderCartstatus from '../OrderCartstatus';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './Myorder.css';
 import { useNavigate } from 'react-router-dom';
 const Myorder = ({ socket }) => {
-  const [myOrders, setMyOrders] = useState('');
+  const [myOrders, setMyOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const history = useNavigate();
 

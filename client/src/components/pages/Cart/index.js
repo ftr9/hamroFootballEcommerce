@@ -1,26 +1,22 @@
 import './Cart.css';
-import Cartcard from '../Cartcard';
-import Solidbutton from '../button/Solidbutton';
+import Cartcard from '../../Cartcard';
+import Solidbutton from '../../button/Solidbutton';
 
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import PlaceOrder from '../popup/PlaceOrder';
+import PlaceOrder from '../../popup/PlaceOrder';
 
 const Cart = ({ cartItems, userInfo }) => {
-  const [isPlaceOrderForm, setisPlaceOrderForm] = useState(false);
+  const navigate = useNavigate();
 
   const placeOrder = () => {
     if (!userInfo.user) {
       alert('Please login to continue');
       return;
     } else {
-      setisPlaceOrderForm(true);
+      navigate('/checkout');
     }
-  };
-
-  const closeForm = () => {
-    setisPlaceOrderForm(false);
   };
 
   const return_If_EmptyCart = () => {
@@ -55,14 +51,13 @@ const Cart = ({ cartItems, userInfo }) => {
             />
           );
         })}
-        {isPlaceOrderForm ? <PlaceOrder closeForm={closeForm} /> : ''}
       </div>
       {cartItems.length === 0 ? (
         ''
       ) : (
         <div className="Cartpage__button">
           <Solidbutton
-            content="Place order"
+            content="Checkout"
             icon={<ion-icon name="cart"></ion-icon>}
             onClicked={placeOrder}
           />

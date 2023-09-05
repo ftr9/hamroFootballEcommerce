@@ -107,11 +107,13 @@ export const PLACE_ORDER_COD = datas => {
 
 export const PLACE_ORDER_DIGITAl = datas => {
   return async dispatch => {
+    console.log(datas);
     datas.mainOrder.paymentType = 'payed digitally';
     const confirmedOrder = await axios.post(
       '/api/v1/hamrofootball/stripe',
       datas
     );
+    console.log(confirmedOrder);
     if (confirmedOrder.data.status !== 'fail') {
       localStorage.removeItem('addedToCart');
       dispatch({ type: 'change', body: {} });

@@ -1,7 +1,7 @@
 import './Home.css';
-import Anchorbutton from '../button/Anchorbutton';
-import Solidbutton from '../button/Solidbutton';
-import Imagebutton from '../button/Imagebutton';
+import Anchorbutton from '../../button/Anchorbutton';
+import Solidbutton from '../../button/Solidbutton';
+import Imagebutton from '../../button/Imagebutton';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   AUTHENTICATION,
   AUTHENTICATION__LOGOUT,
-} from '../../redux/actions/index';
+} from '../../../redux/actions/index';
 
 const Home = props => {
   const { userInfo, AUTHENTICATION, AUTHENTICATION__LOGOUT, socket } = props;
