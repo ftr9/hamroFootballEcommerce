@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './Myorder.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const Myorder = ({ socket }) => {
   const [myOrders, setMyOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,14 +13,14 @@ const Myorder = ({ socket }) => {
 
   useEffect(() => {
     (async () => {
-      try {
-        const orders = await axios.get('/api/v1/hamrofootball/myorders');
-        if (orders.data.status === 'success') {
-          setLoading(false);
-          setMyOrders(orders.data.orders);
-        }
-      } catch (err) {
-        alert('You are not logged in please login to see your orders');
+      const orders = await axios.get('/api/v1/hamrofootball/myorders');
+      if (orders.data.status === 'success') {
+        setLoading(false);
+        setMyOrders(orders.data.orders);
+      }
+
+      if (orders.data.status === 'fail') {
+        toast.warn('You are not logged in Please login  !!!!');
         history('/');
       }
     })();
@@ -80,7 +81,9 @@ const Myorder = ({ socket }) => {
       return (
         <div className="myOrders__noorder">
           <h3>You have no orders currently</h3>
-          <img src={'/images/emptyCart.png'} alt={'empty cart'}></img>
+          <div className="myOrder__noorder_img">
+            <img src={'/images/emptyCart.png'} alt={'empty cart'}></img>
+          </div>
         </div>
       );
     }
