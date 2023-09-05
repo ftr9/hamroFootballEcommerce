@@ -34,3 +34,38 @@
   border: 1px solid transparent;
   border-radius: 5rem;
 }
+
+@media (max-width: 960px) {
+  .Products {
+    overflow-y: scroll;
+  }
+}
+
+@media (max-width: 600px) {
+  .Products {
+    padding: 2rem;
+  }
+
+  .Products__top {
+    flex-direction: column;
+  }
+  .Products__top--input {
+    width: 100%;
+    margin: 2rem 0px;
+  }
+  .Products__top--input input {
+    width: 100%;
+  }
+  .Products__top--input ion-icon {
+    display: none;
+  }
+  .Products__top select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .Products {
+    padding: 0.5rem;
+  }
+}
