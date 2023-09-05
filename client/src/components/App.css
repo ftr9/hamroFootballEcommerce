@@ -1,11 +1,11 @@
 .App {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .App__navigation {
   width: 8rem;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
