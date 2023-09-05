@@ -30,14 +30,18 @@ const Home = props => {
           <Imagebutton
             content="Logout"
             imageurl={userInfo.user.picture}
-            onClicked={() => AUTHENTICATION__LOGOUT()}
+            onClicked={() => {
+              const a = document.createElement('a');
+              a.href = '/logout';
+              a.click();
+            }}
           />
         );
       case 'notlogged':
         return (
           <Anchorbutton
             content={'Login'}
-            link={`/auth/google/login`}
+            link={`/login`}
             icon={<ion-icon name="log-in"></ion-icon>}
           />
         );
