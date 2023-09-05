@@ -7,6 +7,8 @@ import Myorder from './pages/Myorder';
 import Productpage from './pages/Productpage';
 import Navbar from './Navbar';
 import Adminpage from './pages/Adminpage';
+import CheckOut from './pages/Checkout';
+import Successfull from './pages/Successfull';
 
 const App = () => {
   return (
@@ -20,10 +22,12 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/checkout" element={<CheckOut />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/myorders" element={<Myorder />}></Route>
             <Route path="/products" element={<Productpage />}></Route>
             <Route path="/admin" element={<Adminpage />}></Route>
+            <Route path="/success" element={<Successfull />}></Route>
           </Routes>
         </div>
       </Router>
