@@ -25,12 +25,18 @@ const CheckOutForm = () => {
     setPhoneNumber,
     location,
     SetLocation,
+    hasAnyFormError,
+    formError,
   } = useShipAddressFormState();
   const dispatch = useDispatch();
   const carts = useSelector(state => state.carts);
   const navigation = useNavigate();
 
   const payWithKhaltiHandle = async token => {
+    if (hasAnyFormError()) {
+      return;
+    }
+
     const mainOrder = {
       name,
       confirmationEmail,
@@ -54,6 +60,9 @@ const CheckOutForm = () => {
   };
 
   const payWthCODHandle = async () => {
+    if (hasAnyFormError()) {
+      return;
+    }
     const mainOrder = {
       name,
       confirmationEmail,
@@ -97,33 +106,71 @@ const CheckOutForm = () => {
   return (
     <>
       <div className="checkout_container--left">
-        <h4>Shipping Address</h4>
+        <h3>Shipping Address</h3>
 
-        <input
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          placeholder="Enter Name"
-        />
+        <div className="shipping_input_container">
+          <label className="shipping_label">* FullName</label>
+          <input
+            className="shipping_input"
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            placeholder="Enter Name"
+          />
+          {formError.name.hasError && (
+            <span className="shipping_input_error">
+              {formError.name.errorMessage}
+            </span>
+          )}
+        </div>
 
-        <input
-          type="email"
-          value={confirmationEmail}
-          onChange={e => setConfirmationEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <input
-          type="text"
-          value={phoneNumber}
-          onChange={e => setPhoneNumber(e.target.value)}
-          placeholder="phonenumber"
-        />
-        <input
-          type="text"
-          value={location}
-          onChange={e => SetLocation(e.target.value)}
-          placeholder="Enter full Location"
-        />
+        <div className="shipping_input_container">
+          <label className="shipping_label">* Confirmation Email</label>
+          <input
+            className="shipping_input"
+            type="email"
+            value={confirmationEmail}
+            onChange={e => setConfirmationEmail(e.target.value)}
+            placeholder="Email"
+          />
+          {formError.confirmationEmail.hasError && (
+            <span className="shipping_input_error">
+              {formError.confirmationEmail.errorMessage}
+            </span>
+          )}
+        </div>
+
+        <div className="shipping_input_container">
+          <label className="shipping_label">* Phone Number</label>
+          <input
+            className="shipping_input"
+            type="text"
+            value={phoneNumber}
+            onChange={e => setPhoneNumber(e.target.value)}
+            placeholder="phonenumber"
+          />
+          {formError.phoneNumber.hasError && (
+            <span className="shipping_input_error">
+              {formError.phoneNumber.errorMessage}
+            </span>
+          )}
+        </div>
+
+        <div className="shipping_input_container">
+          <label className="shipping_label">* Full Location</label>
+          <input
+            className="shipping_input"
+            type="text"
+            value={location}
+            onChange={e => SetLocation(e.target.value)}
+            placeholder="Enter full Location"
+          />
+          {formError.location.hasError && (
+            <span className="shipping_input_error">
+              {formError.location.errorMessage}
+            </span>
+          )}
+        </div>
       </div>
       <CheckOut.CheckOutSummary
         onPaywithKhalti={payWithKhaltiHandle}
