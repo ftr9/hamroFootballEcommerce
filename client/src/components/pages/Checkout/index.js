@@ -5,6 +5,7 @@ import useShipAddressFormState from './hooks/useShipAddressFormState';
 import StripePayment from 'react-stripe-checkout';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const CheckOut = () => {
   return (
@@ -61,6 +62,7 @@ const CheckOutForm = () => {
       carts,
       paymentType: 'cash on delivery',
     };
+    const id = toast.loading('Please Hold on !!!!');
     const confirmedOrder = await axios.post(
       '/api/v1/hamrofootball/order',
       mainOrder
@@ -68,6 +70,21 @@ const CheckOutForm = () => {
     if (confirmedOrder.data.status !== 'fail') {
       localStorage.removeItem('addedToCart');
       dispatch({ type: 'change', body: {} });
+      toast.update(id, {
+        render: 'Your Order was successfull',
+        type: 'success',
+        isLoading: false,
+        autoClose: true,
+        closeOnClick: true,
+      });
+    } else {
+      toast.update(id, {
+        render: 'Something went wrong  !!!!',
+        type: 'error',
+        autoClose: true,
+        isLoading: false,
+        closeOnClick: true,
+      });
     }
   };
 
