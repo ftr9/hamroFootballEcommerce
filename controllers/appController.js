@@ -48,7 +48,7 @@ exports.postOrder = async (req, res) => {
 exports.getMyOrders = async (req, res) => {
   try {
     if (!req.oidc.isAuthenticated()) {
-      res.status(404).json({
+      res.status(200).json({
         status: 'fail',
         message: 'you are not logged in please login first',
       });
