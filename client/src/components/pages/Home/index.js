@@ -3,7 +3,7 @@ import Anchorbutton from '../../button/Anchorbutton';
 import Solidbutton from '../../button/Solidbutton';
 import Imagebutton from '../../button/Imagebutton';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 //action creators
@@ -13,17 +13,19 @@ import {
 } from '../../../redux/actions/index';
 
 const Home = props => {
-  const { userInfo, AUTHENTICATION, AUTHENTICATION__LOGOUT, socket } = props;
+  const { userInfo, AUTHENTICATION__LOGOUT, socket } = props;
   const history = useNavigate();
 
-  useEffect(() => {
-    AUTHENTICATION();
-  }, [AUTHENTICATION]);
+  const { isAuthenticating } = useAuth();
+
+  if (isAuthenticating) {
+    return <h1>Loading....</h1>;
+  }
 
   const return_Button_On_UserStatus = () => {
     switch (userInfo.status) {
       case 'logged':
-        socket.emit('userRoomId', userInfo.user._id);
+        socket.emit('userRoomId', userInfo.user.email);
         return (
           <Imagebutton
             content="Logout"
