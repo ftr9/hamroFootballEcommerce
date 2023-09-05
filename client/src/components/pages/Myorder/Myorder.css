@@ -1,16 +1,23 @@
 .myOrders {
-  height: 100vh;
+  height: 98vh;
+  padding: 1rem;
   overflow-y: scroll;
+}
+
+.myOrder__noorder_img {
+  max-width: 60rem;
+  margin: 10rem auto 0rem auto;
 }
 
 .myOrders__noorder {
   text-align: center;
 }
 .myOrders__noorder img {
-  height: 60rem;
+  width: 100%;
+  object-fit: contain;
 }
 .OrderCart {
-  width: 90rem;
+  max-width: 90rem;
   background-color: #dbdbdb;
   margin: 2.5rem auto;
   padding: 2rem 1.5rem;
@@ -22,7 +29,7 @@
   padding: 0.5rem 1rem;
   background-color: #0a6c0a;
   border-radius: 10rem;
-  width: 22rem;
+  width: 100%;
   font-size: 1.3rem;
   font-weight: bold;
   text-align: center;
@@ -32,7 +39,7 @@
 .OrderCart__underline {
   height: 0.05rem;
   background-color: #cbcbcb;
-  width: 45rem;
+  width: 100%;
   margin: 2.5rem auto;
   display: block;
 }
@@ -67,6 +74,34 @@
   height: 0.5rem;
   background-color: rgb(0, 0, 0);
   transform: translateY(-1rem);
+}
+@media (max-width: 750px) {
+  .OrderCart__status--line {
+    width: 5rem;
+  }
+}
+@media (max-width: 650px) {
+  .OrderCart__status--bubble {
+    height: 2rem;
+    width: 2rem;
+  }
+}
+@media (max-width: 400px) {
+  .OrderCart__status--bubble {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .OrderCart {
+    width: 30rem;
+  }
+}
+@media (max-width: 400px) {
+  .OrderCart {
+    width: 25rem;
+  }
 }
 
 .ACTIVE {

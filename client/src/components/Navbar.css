@@ -45,3 +45,12 @@
   color: white;
   font-weight: bold;
 }
+
+@media (max-width: 450px) {
+  .Navbar li a p {
+    font-size: 1rem;
+  }
+  .Navbar li a ion-icon {
+    font-size: 2rem;
+  }
+}

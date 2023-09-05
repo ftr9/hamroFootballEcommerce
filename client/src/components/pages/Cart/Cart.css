@@ -3,6 +3,11 @@
   overflow-y: scroll;
   padding: 5rem;
 }
+@media (max-width: 600px) {
+  .Cartpage {
+    padding: 2rem;
+  }
+}
 
 .Cartpage__title {
   text-align: center;
@@ -20,6 +25,12 @@
 }
 .cart__Empty {
   text-align: center;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+.cart__Empty img {
+  width: 100%;
+  object-fit: contain;
 }
 .Cartpage__products img {
   height: 50rem;

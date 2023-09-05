@@ -1,11 +1,6 @@
 .leagueList {
-  height: 70vh;
-  display: flex;
-  align-items: center;
-  width: 125rem;
-  justify-content: center;
-  margin: 0 auto;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 .leagueList__Card:hover {
   transform: translateY(-1rem);
@@ -16,9 +11,21 @@
   width: 100%;
   object-fit: cover;
 }
+
+.leagueList_info_header {
+  text-align: center;
+  margin-top: 2rem;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+  .leagueList_info_header {
+    font-size: 2rem;
+  }
+}
+
 .leagueList__Card {
-  height: 15rem;
-  width: 15rem;
+  height: 20rem;
   background-color: white;
   display: inline-block;
   margin: 0 0.1rem;
@@ -28,6 +35,7 @@
   animation-duration: 0.5s;
   animation-timing-function: ease;
   animation-fill-mode: backwards;
+  margin: 1rem;
 }
 .leagueList__Card:nth-of-type(1) {
   animation-delay: 0.01s;

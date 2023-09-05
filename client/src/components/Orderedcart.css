@@ -9,6 +9,12 @@
   border: 1px solid rgb(163, 163, 163);
 }
 
+@media (max-width: 600px) {
+  .Orderedcart {
+    width: 100%;
+  }
+}
+
 .Orderedcart__right {
   padding-left: 1rem;
 }
@@ -20,10 +26,26 @@
   margin-left: 3rem;
   font-weight: bold;
   font-size: 1.2rem;
+  margin-left: 3rem;
+  flex-shrink: 0;
 }
 
 .Orderedcart__left img {
   height: 8rem;
+}
+
+@media (max-width: 540px) {
+  .Orderedcart__left img {
+    height: 5rem;
+  }
+}
+@media (max-width: 400px) {
+  .Orderedcart__rightcount {
+    font-size: 1rem;
+  }
+  .Orderedcart__rightcount {
+    margin-left: 1rem;
+  }
 }
 
 .Orderedcart__right--price,

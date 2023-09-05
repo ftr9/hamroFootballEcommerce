@@ -8,6 +8,14 @@
   font-size: 1.35rem;
   font-weight: bold;
 }
+
+@media (max-width: 480px) {
+  .Adminpage__ordercardtop p {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
 .Adminpage__ordercardtop p:nth-of-type(1) {
   color: #0a6c0a;
 }
@@ -25,14 +33,16 @@
   margin-right: 1rem;
 }
 .Adminpage__top {
-  width: 90vw;
+  width: 80%;
+  margin: 0 auto;
   position: fixed;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
 .Adminpage__ordercard {
-  width: 65rem;
+  max-width: 65rem;
   background-color: #c4c4c4;
   margin: 2rem auto;
   padding: 1.5rem;
@@ -43,11 +53,24 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 1rem;
+  align-items: center;
+}
+
+@media (max-width: 390px) {
+  .Adminpage__ordercardtop {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 .Adminpage__ordercardbody {
   display: flex;
   align-items: center;
+}
+@media (max-width: 700px) {
+  .Adminpage__ordercardbody {
+    flex-direction: column;
+  }
 }
 
 .Adminpage__location {
@@ -68,11 +91,22 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 2rem;
-  width: 32rem;
+}
+
+@media (max-width: 380px) {
+  .Adminpage__buttons {
+    flex-direction: column;
+    align-items: start;
+  }
+  .Adminpage__buttons .Adminpage__select {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
 }
 
 .Adminpage__ordercardright {
   padding: 1rem;
+  width: 100%;
 }
 
 .Adminpage__location--place {
