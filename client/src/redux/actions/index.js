@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const AUTHENTICATION = () => {
   return async disptach => {
+    disptach({ type: 'CHECK_AUTH' });
     const userInfo = await axios.get('/api/v1/hamrofootball/userInfo');
     if (userInfo.data !== false) {
       disptach({ type: 'LOGGED_USER', body: userInfo.data });
