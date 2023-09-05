@@ -30,7 +30,15 @@ exports.getuserInfo = (req, res) => {
 };
 exports.postOrder = async (req, res) => {
   try {
-    const order = await ordermodel.create(req.body);
+    const order = await ordermodel.create({
+      userEmail: req.oidc.user.email,
+      userName: req.body.name,
+      confirmationEmail: req.body.confirmationEmail,
+      orders: req.body.carts,
+      phone: req.body.phoneNumber,
+      location: req.body.location,
+      paymentType: req.body.paymentType,
+    });
     res.status(201).json({ status: 'success', order });
   } catch (err) {
     res.status(404).json({ status: 'fail' });
@@ -38,24 +46,25 @@ exports.postOrder = async (req, res) => {
 };
 exports.getMyOrders = async (req, res) => {
   try {
-    if (!req.user) {
-      res
-        .status(404)
-        .json({
-          status: 'fail',
-          message: 'you are not logged in please login first',
-        });
-      return 0;
+    if (!req.oidc.isAuthenticated()) {
+      res.status(404).json({
+        status: 'fail',
+        message: 'you are not logged in please login first',
+      });
+      return;
     }
-    const orders = await ordermodel.find({ userId: req.user._id });
+    const orders = await ordermodel
+      .find({
+        userEmail: req.oidc.user.email,
+      })
+      .sort('-createdAt');
     res.status(200).send({ status: 'success', orders });
   } catch (err) {
-    res
-      .status(404)
-      .json({
-        status: 'fail',
-        message: 'something went wrong please reload again to see changes',
-      });
+    console.log(err);
+    res.status(404).json({
+      status: 'fail',
+      message: 'something went wrong please reload again to see changes',
+    });
   }
 };
 exports.getAdminOrders = async (req, res) => {
@@ -66,12 +75,10 @@ exports.getAdminOrders = async (req, res) => {
       .sort({ createdAt: -1 });
     res.status(200).json({ status: 'success', orders: order });
   } catch (err) {
-    res
-      .status(404)
-      .json({
-        status: 'fail',
-        message: 'some thing went very wrong please reload to see changes',
-      });
+    res.status(404).json({
+      status: 'fail',
+      message: 'some thing went very wrong please reload to see changes',
+    });
   }
 };
 exports.deleteOrders = async (req, res) => {
@@ -95,7 +102,15 @@ exports.StripePayment = async (req, res) => {
       description: 'football payment',
     });
 
-    const order = await ordermodel.create(req.body.mainOrder);
+    const order = await ordermodel.create({
+      userEmail: req.oidc.user.email,
+      userName: req.body.name,
+      confirmationEmail: req.body.confirmationEmail,
+      orders: req.body.carts,
+      phone: req.body.phoneNumber,
+      location: req.body.location,
+      paymentType: req.body.paymentType,
+    });
     res.status(201).json({ status: 'success', order });
   } catch (err) {
     console.log(err);
