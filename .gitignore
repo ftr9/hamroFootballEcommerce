@@ -1,4 +1,4 @@
 node_modules
-/config/AuthConfig.js
-/config/keys.env
-/config/keys.example.env
+config/AuthConfig.js
+config/keys.env
+config/keys.example.env
